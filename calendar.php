@@ -7,10 +7,14 @@ function linha($semana) {
 		//verifica se os índices do array semana foram definidos
 		if (isset ( $semana [$i] )) {
 			
-			//exibe a posição correspondente ao count
-			echo "<td>{$semana[$i]}</td>";
+			//exibe o dia em negrito se for o dia atual
+			if (date('d') == $semana[$i]){
+				echo "<td><b>{$semana[$i]}</b></td>";
+			} else{
+				echo "<td>{$semana[$i]}</td>";
+			}
 			
-			//coluna vazia (se o índice do array não estiver ocupado)
+		//coluna vazia (se o índice do array não estiver ocupado)
 		} else {
 			echo "<td></td>";
 		}
@@ -39,6 +43,19 @@ function calendar() {
 	}
 	linha ( $semana );
 }
+
+function hora() {
+	if ((date ( 'H' ) >= 12) && (date ( 'H' ) <= 18))
+		echo "Boa tarde !";
+	
+	else if ((date ( 'H' ) > 18) && (date ( 'H' ) <= 00))
+		echo "Boa Noite !";
+	
+	else
+		echo "Bom dia !";
+	
+	echo " São: " . date ( 'H:i' );
+}
 ?>
 
 <!-- Calendário -->
@@ -54,4 +71,5 @@ function calendar() {
 	</tr>
   
   <?php calendar(); ?>
+  <?php hora(); ?>
 </table>
