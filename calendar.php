@@ -7,21 +7,24 @@ function linha($semana) {
 		//verifica se os índices do array semana foram definidos
 		if (isset ( $semana [$i] )) {
 			
-			//exibe o dia em negrito se for o dia atual
-			if (date('d') == $semana[$i]){
-				echo "<td><b>{$semana[$i]}</b></td>";
-			} else{
-				echo "<td>{$semana[$i]}</td>";
-			}
+			//Domingos em vermelho
+			if($i==0)
+				echo "<td><font color='red'>{$semana[$i]}</font></td>";
 			
-		//coluna vazia (se o índice do array não estiver ocupado)
-		} else {
-			echo "<td></td>";
-		}
+			//dia atual em negrito
+			else if(date('d') == $semana[$i])
+				echo "<td><b>{$semana[$i]}</b></td>";
+			
+			//dias comuns - coluna vazia (se o indice do array não estiver ocupado)
+			else 
+			echo "<td>{$semana[$i]}</td>";
+			
 	}
 		
-		echo "</tr>";
+		
 	}
+	echo "</tr>";
+}
 	
 function calendar() {
 	$dia = 1;
@@ -35,7 +38,8 @@ function calendar() {
 		
 		// 7 dias da semana
 		if (count ( $semana ) == 7) {
-			linha($semana);
+
+			echo linha($semana);
 			$semana = array ();
 		}
 		
@@ -53,8 +57,8 @@ function hora() {
 	
 	else
 		echo "Bom dia !";
-	
-	echo " São: " . date ( 'H:i' );
+
+	   	echo " São, ".date('H:i');
 }
 ?>
 
