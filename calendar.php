@@ -1,35 +1,43 @@
 <?php
 function linha($semana) {
-	echo "
-		<tr>
-			
-			<td>{$semana[0]}</td>
-			<td>{$semana[1]}</td>
-			<td>{$semana[2]}</td>
-			<td>{$semana[3]}</td>
-			<td>{$semana[4]}</td>
-			<td>{$semana[5]}</td>
-			<td>{$semana[6]}</td>
-		</tr>
-			";
-}
-
-function calendar() {
-	$dia =1;
-	$semana= array();
+	echo "<tr>";
 	
-	//31 dias
-	while ($dia<=31){
-		array_push($semana, $dia);
+	for($i = 0; $i <= 6; $i ++) {
 		
-		//7 dias da semana
-		if (count($semana) == 7){
+		//verifica se os índices do array semana foram definidos
+		if (isset ( $semana [$i] )) {
+			
+			//exibe a posição correspondente ao count
+			echo "<td>{$semana[$i]}</td>";
+			
+			//coluna vazia (se o índice do array não estiver ocupado)
+		} else {
+			echo "<td></td>";
+		}
+	}
+		
+		echo "</tr>";
+	}
+	
+function calendar() {
+	$dia = 1;
+	$semana = array ();
+	
+	// 31 dias
+	while ( $dia <= 31 ) {
+		
+		//atribuiu o valor do dia ao array semana
+		array_push ( $semana, $dia );
+		
+		// 7 dias da semana
+		if (count ( $semana ) == 7) {
 			linha($semana);
-			$semana = array();
+			$semana = array ();
 		}
 		
-		$dia++;
+		$dia ++;
 	}
+	linha ( $semana );
 }
 ?>
 
